@@ -1,4 +1,4 @@
-|build| |license| |code style| |coverage|
+|build| |license| |code style| |coverage| |colab-badge|
 
 Supercharge
 -----------
@@ -78,3 +78,7 @@ If this is behaviour is desired in subclassed runs one must use the `Base` class
 .. |coverage| image:: https://coveralls.io/repos/github/zincware/supercharge/badge.svg
     :alt: Code coverage
     :target: https://coveralls.io/github/zincware/supercharge
+
+.. |colab-badge| image:: https://colab.research.google.com/assets/colab-badge.svg
+    :alt: Open Example in Google Colab
+    :target: https://colab.research.google.com/github/zincware/supercharge/blob/main/examples/introduction.ipynb
