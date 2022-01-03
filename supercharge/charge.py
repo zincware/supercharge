@@ -1,6 +1,9 @@
 from __future__ import annotations
 
 import functools
+import logging
+
+log = logging.getLogger(__name__)
 
 
 class BaseCharge:
@@ -55,10 +58,10 @@ class Charge(BaseCharge):
     >>> @Charge
     >>> def run(self):
     >>>     # do something
-    >>> @run.pre
+    >>> @run.enter
     >>> def pre_run(self):
     >>>     # do something before run
-    >>> @run.post
+    >>> @run.exit
     >>> def post_run(self):
     >>>     # do something after run
 
@@ -133,7 +136,7 @@ class Charge(BaseCharge):
                 )
         return parsed_func
 
-    def pre(self, func):
+    def enter(self, func):
         """Add a function to be called before the charged object
 
         Parameters
@@ -148,7 +151,7 @@ class Charge(BaseCharge):
         self._pre_func = BaseCharge(func)
         return self._pre_func
 
-    def post(self, func):
+    def exit(self, func):
         """Add a function to be called after the charged object
 
         Parameters
@@ -162,3 +165,11 @@ class Charge(BaseCharge):
         """
         self._post_func = BaseCharge(func)
         return self._post_func
+
+    def pre(self, func):
+        log.warning("DeprecationWarning: replaced by enter")
+        return self.enter(func)
+
+    def post(self, func):
+        log.warning("DeprecationWarning: replaced by exit")
+        return self.exit(func)

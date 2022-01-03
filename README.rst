@@ -23,11 +23,11 @@ Example
             if self.run_prepared:
                 print("running ...")
 
-        @run.pre
+        @run.enter
         def pre_run(self):
             self.run_prepared = True
 
-        @run.post
+        @run.exit
         def post_run(self):
             self.run_state = True
 
@@ -47,11 +47,11 @@ If this is behaviour is desired in subclassed runs one must use the `Base` class
         def run(self):
             raise NotImplementedError
 
-        @run.pre
+        @run.enter
         def pre_run(self):
             self.run_prepared = True
 
-        @run.post
+        @run.exit
         def post_run(self):
             self.run_state = True
 
