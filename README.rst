@@ -6,6 +6,12 @@ Supercharge
 This package allows you to automatically run code before and after a given class method.
 Furthermore, this behaviour can be enforced on child classes as well.
 
+Supercharge is available via:
+
+.. code-block::
+
+    pip install supercharge
+
 Example
 =======
 
