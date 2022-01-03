@@ -1,0 +1,6 @@
+/supercharge.egg-info/
+/tmp/
+__pycache__/
+
+.idea/
+.coverage
