@@ -7,7 +7,7 @@ def test_subclass_no_super():
         def __init__(self):
             self.name = None
 
-        @__init__.post
+        @__init__.exit
         def post_init(self):
             self.name = "Lorem Ipsum"
 
@@ -23,7 +23,7 @@ def test_subclass_with_super():
         def __init__(self):
             self.name = None
 
-        @__init__.post
+        @__init__.exit
         def post_init(self):
             self.name = "Lorem Ipsum"
 
@@ -44,11 +44,11 @@ def test_subclass_without_super():
         def run(self):
             pass
 
-        @run.pre
+        @run.enter
         def pre_run(self):
             self.pre_state = True
 
-        @run.post
+        @run.exit
         def post_run(self):
             self.post_state = True
 
@@ -89,7 +89,7 @@ def test_subclass_not_implemented():
         def run(self):
             raise NotImplementedError
 
-        @run.post
+        @run.exit
         def post_run(self):
             self.state = True
 

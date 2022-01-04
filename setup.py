@@ -6,7 +6,7 @@ long_description = pathlib.Path("README.rst").read_text()
 
 setuptools.setup(
     name="supercharge",
-    version="0.0.2",
+    version="0.1.0",
     author="zincwarecode",
     author_email="zincwarecode@gmail.com",
     description="Expand Python Super Capabilities",

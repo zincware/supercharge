@@ -3,4 +3,4 @@ from supercharge.charge import Charge
 
 __all__ = ["Base", "Charge"]
 
-__version__ = "0.0.2"
+__version__ = "0.1.0"

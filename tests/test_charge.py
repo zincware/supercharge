@@ -9,7 +9,7 @@ def test_pre_init():
         def __init__(self):
             self.name: str
 
-        @__init__.pre
+        @__init__.enter
         def pre_init(self):
             self.name = "Lorem Ipsum"
 
@@ -39,7 +39,7 @@ def test_post_init():
         def __init__(self):
             self.name = None
 
-        @__init__.post
+        @__init__.exit
         def post_init(self):
             self.name = "Lorem Ipsum"
 
@@ -53,11 +53,11 @@ def test_pre_and_post_init():
             self.first_name: str
             self.second_name: str
 
-        @__init__.pre
+        @__init__.enter
         def pre_init(self):
             self.first_name = "Lorem"
 
-        @__init__.post
+        @__init__.exit
         def post_init(self):
             self.second_name = "Ipsum"
 
@@ -74,7 +74,7 @@ def test_custom_method():
         def my_method(self):
             pass
 
-        @my_method.pre
+        @my_method.enter
         def pre_my_method(self):
             self.name = "Lorem Ipsum"
 
@@ -93,7 +93,7 @@ def test_custom_method_with_kwargs():
         def my_method(self, name):
             self.name = name
 
-        @my_method.pre
+        @my_method.enter
         def pre_my_method(self):
             self.state = True
 
@@ -112,11 +112,11 @@ def test_custom_return():
         def my_method(self):
             return self.name
 
-        @my_method.pre
+        @my_method.enter
         def pre_my_method(self):
             self.name = "Lorem Ipsum"
 
-        @my_method.post
+        @my_method.exit
         def post_my_method(self):
             self.name = "dolor sit amet"
 
@@ -131,7 +131,7 @@ def test_pre_method_with_kwargs():
         def __init__(self):
             pass
 
-        @__init__.pre
+        @__init__.enter
         def pre_init(self, name):
             pass
 
@@ -145,7 +145,7 @@ def test_post_method_with_kwargs():
         def __init__(self):
             pass
 
-        @__init__.post
+        @__init__.exit
         def post_init(self, name):
             pass
 
@@ -161,7 +161,7 @@ def test_multiple_charges():
             self.name = None
             self.run_state = False
 
-        @__init__.post
+        @__init__.exit
         def post_init(self):
             self.state = True
 
@@ -169,7 +169,7 @@ def test_multiple_charges():
         def run(self):
             self.run_state = True
 
-        @run.post
+        @run.exit
         def post_run(self):
             self.name = "Lorem Ipsum"
 

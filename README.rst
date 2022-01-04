@@ -29,11 +29,11 @@ Example
             if self.run_prepared:
                 print("running ...")
 
-        @run.pre
+        @run.enter
         def pre_run(self):
             self.run_prepared = True
 
-        @run.post
+        @run.exit
         def post_run(self):
             self.run_state = True
 
@@ -53,11 +53,11 @@ If this is behaviour is desired in subclassed runs one must use the `Base` class
         def run(self):
             raise NotImplementedError
 
-        @run.pre
+        @run.enter
         def pre_run(self):
             self.run_prepared = True
 
-        @run.post
+        @run.exit
         def post_run(self):
             self.run_state = True
 
@@ -65,6 +65,40 @@ If this is behaviour is desired in subclassed runs one must use the `Base` class
         def run(self):
             if self.run_prepared:
                 print("running ...")
+
+Noticeable Alternatives
+=======================
+Using supercharge might not always be the best way to go. In many scenarios an easier way
+to achieve a similar functionality can be
+
+.. code-block:: py
+
+    class HelloWorld:
+        def __init__(self):
+            self.run_prepared = False
+            self.run_state = False
+
+        def run(self):
+            self.pre_run()
+            self.base_run()
+            self.post_run()
+
+        def base_run(self):
+            raise NotImplementedError
+
+        def pre_run(self):
+            self.run_prepared = True
+
+        def post_run(self):
+            self.run_state = True
+
+    class Child(HelloWorld):
+        def base_run(self):
+            if self.run_prepared:
+                print("running ...")
+
+where you call `Child.run()` and overwrite `Child.base_run()`.
+
 
 .. badges
 

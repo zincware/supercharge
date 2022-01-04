@@ -15,7 +15,7 @@ class Base:
     >>> @Charge
     >>> def run(self):
     >>>     raise NotImplementedError
-    >>> @run.post
+    >>> @run.exit
     >>> def post_run(self):
     >>>     # do something after run in the child class
     >>>  class Child(Parent):
