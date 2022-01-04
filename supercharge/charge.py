@@ -165,3 +165,6 @@ class Charge(BaseCharge):
         """
         self._post_func = BaseCharge(func)
         return self._post_func
+    
+    def test_123(self):
+        raise NotImplementeError()
