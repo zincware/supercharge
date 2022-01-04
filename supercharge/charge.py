@@ -165,11 +165,3 @@ class Charge(BaseCharge):
         """
         self._post_func = BaseCharge(func)
         return self._post_func
-
-    def pre(self, func):
-        log.warning("DeprecationWarning: replaced by enter")
-        return self.enter(func)
-
-    def post(self, func):
-        log.warning("DeprecationWarning: replaced by exit")
-        return self.exit(func)
